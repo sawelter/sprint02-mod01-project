@@ -119,8 +119,8 @@ function finalScore(inningFunct, numInnings){
   let awayPoints = 0;
 
   for(let i = 0; i < numInnings; i++) {
-    homePoints += getInningScore(inning, i).Home;
-    awayPoints += getInningScore(inning, i).Away;
+    homePoints += inningFunct();
+    awayPoints += inningFunct();
   }
 
   return {Home: homePoints, Away: awayPoints};
@@ -141,8 +141,8 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(inningNum) {
-  return {Home: inning(), Away: inning(), Inning: inningNum};
+function getInningScore(inningFunct) {
+  return {Home: inningFunct(), Away: inningFunct()};
 }
 
 
