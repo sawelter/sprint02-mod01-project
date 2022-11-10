@@ -16,9 +16,32 @@
 */
 
 function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
+  /* stringList = ['foo', 'bar']
+   function callback (str) {
+      return str + str;
+   }
+  */
+  return callback(stringList[0]);
 }
+
 console.log('example task:', processFirstItem(['foo','bar'],function(str){return str+str}));
+
+// Sawyer's Notes. A breakdown of this single line of code
+/* 
+
+1.    const stringList = ['foo', 'bar']; // this is the first argument (an array)
+    
+2.    function stringString(str) {       // this is the second argument (a function)
+      return str + str;
+    };
+
+3. const firstElTwice = processFirstItem(stringList, stringString)
+
+4. console.log("example: " + firstElTwice) // prints "foofoo"
+
+*/
+
+
 
 // ⭐️ Example Challenge END ⭐️
 
@@ -30,11 +53,15 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
+  counter1 holds the counterMaker's sub-function of counter. counter2 is simply holding a function that is not, so its scope is less limited.
+
   
   2. Which of the two uses a closure? How can you tell?
+     counter1 uses closure. counter1 has the scope only of counterMaker (closure) rather than scope of the entire program.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+     If the "count" variable was going to be used as one variable throughout the code, then counter2 would be better. However, if multiple counters were necessary, then counter1 would be better, because it would allow different counts to be used in different variables.
 */
 
 // counter1 code
@@ -47,7 +74,7 @@ function counterMaker() {
 
 const counter1 = counterMaker();
 
-// counter2 code
+// counter2 code 
 let count = 0;
 
 function counter2() {
@@ -64,9 +91,13 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    return Math.floor(Math.random() * 3);
 }
+
+// for(let i = 0; i < 10; i++) {
+//   console.log(inning());
+// }
 
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
@@ -83,10 +114,19 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inningFunct, numInnings){
+  let homePoints = 0;
+  let awayPoints = 0;
+
+  for(let i = 0; i < numInnings; i++) {
+    homePoints += getInningScore(inning, i).Home;
+    awayPoints += getInningScore(inning, i).Away;
+  }
+
+  return {Home: homePoints, Away: awayPoints};
 }
 
+console.log(finalScore(inning, 9));
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
@@ -101,9 +141,8 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
-
+function getInningScore(inningNum) {
+  return {Home: inning(), Away: inning(), Inning: inningNum};
 }
 
 
