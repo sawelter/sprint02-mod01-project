@@ -186,12 +186,29 @@ Use the scoreboard function below to do the following:
   "This game will require extra innings: Away 10 - Home 10"
 ] */
 // NOTE: There is no test associated with this code; if your output matches the given example, consider it complete!
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(inningScore, inningCB, numInnings) {
+    const scoreboardMessages = [];
+    let totalAway = 0;
+    let totalHome = 0;
+    for(let i = 0; i < numInnings; i++) {
+      let inningScore = getInningScore(inningCB);
+      let home = inningScore.Home;
+      let away = inningScore.Away;
+      totalAway += away;
+      totalHome += home;
+      scoreboardMessages.push("Inning " + (i+1) + ": Away " + away + " - Home " + home);
+    }
+    if(totalAway === totalHome) {
+      scoreboardMessages.push("This game will require extra innings: Away " + totalAway + " - Home " + totalHome);
+    } else {
+      scoreboardMessages.push("Final Score: Away " + totalAway + " - Home " + totalHome);
+    }
+    return scoreboardMessages;
 }
 
 
-
+console.log(scoreboard(getInningScore(inning), inning, 9));
+     
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo(){
