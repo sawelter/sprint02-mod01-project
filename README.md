@@ -61,7 +61,7 @@ You will be running your tests in one terminal and debugging in the other. As yo
 Edit the `ReadMe` file with your answers to the questions below.
 
 1. In your own words, define closure (1-2 sentences).
-
+Closure is when a function is within the scope of another function, so it retains access to the outer function's variables.
 
 2. Study the following code, then answer the questions below.
 
@@ -84,8 +84,13 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+  The closure is return function (), because anything within the return function () has a scope of both within the return function as well as the outer function personalDice.
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+  The name in the console output will always stay the same, but the newRoll will change each time the funciton is called.
+
 c. What is the lexical scope of `newRoll`? 
+The lexical scope of newRoll is inside of the return function, but NOT within the personalDice function as a whole.
 
 
 ### Task 3 - Stretch Goals
